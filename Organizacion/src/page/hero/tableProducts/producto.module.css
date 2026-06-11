@@ -1,5 +1,7 @@
 .table {
-  width: 100%;
+  min-width: 70vh;
+  max-width: 30vh;
+ 
   border-collapse: collapse;
   margin-top: 20px;
 }

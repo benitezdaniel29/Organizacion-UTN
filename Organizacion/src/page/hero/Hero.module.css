@@ -3,5 +3,10 @@
     height: 100vh;
     justify-content: space-around;
     align-items: center;
-  
+   
+}
+@media (max-width: 1200px) {
+   .hero{
+    flex-direction: column;
+   }
 }

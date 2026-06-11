@@ -1,21 +1,25 @@
 import Styles from "./producto.module.css"
-
+import { useContext } from "react";
+import {ContextProduct} from "../../../context/ContextProduct";
 function TableProducts() {
-    const productos = [
-    { id: 1, producto: "Teclado", cantidad: 5, precio: 25 },
-    { id: 2, producto: "Mouse", cantidad: 10, precio: 15 },
-    { id: 3, producto: "Monitor", cantidad: 3, precio: 180 },
-  ];
+   
+const context = useContext(ContextProduct)
+if (!context) {
+  throw new Error("ContextProduct debe usarse dentro del Provider");
+}
 
-  const eliminarProducto = (id) => {
-    console.log("Eliminar:", id);
-  };
+const {productos, setProductos} = context
+
+  const eliminarProducto = (id: number) => {
+  setProductos((prev) => prev.filter((p) => p.id !== id));
+};
 
   const modificarProducto = (id) => {
     console.log("Modificar:", id);
   };
 
   return (
+  
     <div>
        <table className={Styles.table}>
       <thead>
@@ -32,7 +36,7 @@ function TableProducts() {
         {productos.map((item) => (
           <tr key={item.id}>
             <td>{item.id}</td>
-            <td>{item.producto}</td>
+            <td>{item.nombre}</td>
             <td>{item.cantidad}</td>
             <td>${item.precio}</td>
             <td className={Styles.actions}>
